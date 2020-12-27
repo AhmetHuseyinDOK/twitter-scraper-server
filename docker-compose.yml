@@ -3,6 +3,6 @@ services:
   server:
     container_name: server
     restart: always
-    image: twitter-scraper
+    image: ahmethuseyindok/twitter-scraper-server
     ports:
       - 4321:4321
