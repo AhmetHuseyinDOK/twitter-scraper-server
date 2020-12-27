@@ -57,7 +57,13 @@ async function query(query) {
       })
     );
 
-    total.push(...data);
+    for (const tweet of data) {
+      if (total.find((tweet) => tweet.text == data.text)) {
+        continue;
+      }
+
+      total.push(tweet);
+    }
 
     await page.evaluate(async () => {
       window.scrollBy(0, 500);
