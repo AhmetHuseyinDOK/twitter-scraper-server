@@ -19,7 +19,7 @@ npm start
 ## Running with docker
 
 ```
-docker run ahmethuseyindok/twitter-scraper-server --expose 4321
+docker run -p 4321:4321  ahmethuseyindok/twitter-scraper-server 
 ```
 
 ## Usage
