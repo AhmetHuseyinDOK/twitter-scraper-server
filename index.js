@@ -3,7 +3,7 @@ const { query, openBrowser } = require("./query");
 const app = express();
 const config = require("./config");
 app.get("/", (req, res) => {
-  res.send("Hello, I am twitter bot developed by Ahmet Huseyin DOK");
+  res.send("Hello, I am twitter bot developed by Ahmet Huseyin DOK with LOVE");
 });
 
 app.get("/query", async (req, res) => {
