@@ -8,11 +8,6 @@ async function getProperty(element, selector, content = "textContent") {
 
 async function openBrowser() {
   browser = await puppeeter.launch({
-    defaultViewport: {
-      height: 2000,
-      width: 1500,
-    },
-    headless: false,
     args: ["--disable-dev-shm-usage", "--no-sandbox"],
   });
 }
@@ -22,6 +17,7 @@ async function closeBrowser() {
 }
 
 async function query(query, scroll = 20) {
+  console.log(`searching for query ${query} with scroll count ${scroll}`);
   const page = await browser.newPage();
   await page.goto("https://twitter.com/hashtag/" + escape(query) + "?f=live", { waitUntil: "networkidle2" });
 
