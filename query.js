@@ -8,6 +8,11 @@ async function getProperty(element, selector, content = "textContent") {
 
 async function openBrowser() {
   browser = await puppeeter.launch({
+    defaultViewport: {
+      height: 2000,
+      width: 1500,
+    },
+    headless: false,
     args: ["--disable-dev-shm-usage", "--no-sandbox"],
   });
 }
@@ -16,7 +21,7 @@ async function closeBrowser() {
   browser.close();
 }
 
-async function query(query) {
+async function query(query, scroll = 20) {
   const page = await browser.newPage();
   await page.goto("https://twitter.com/hashtag/" + escape(query) + "?f=live", { waitUntil: "networkidle2" });
 
@@ -25,7 +30,7 @@ async function query(query) {
   // }
   let total = [];
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < scroll; i++) {
     let articles = await page.$$("article");
 
     let data = await Promise.all(
@@ -58,7 +63,7 @@ async function query(query) {
     );
 
     for (const tweet of data) {
-      if (total.find((tweet) => tweet.text == data.text)) {
+      if (total.find((item) => item.text == tweet.text)) {
         continue;
       }
 

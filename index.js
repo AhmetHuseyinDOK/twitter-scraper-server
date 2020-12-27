@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/query", async (req, res) => {
-  let data = await query(req.query.query);
+  let data = await query(req.query.query, req.query.scroll);
   res.send(data);
 });
 
