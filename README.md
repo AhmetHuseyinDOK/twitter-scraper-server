@@ -1,5 +1,7 @@
 # twitter-scraper-server
 
+A basic server that queries some of latest tweets for a hashtag using puppeeter
+
 ## Running with node
 
 Setting up 
