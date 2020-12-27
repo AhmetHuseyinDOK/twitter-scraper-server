@@ -1,0 +1,8 @@
+version: "3.1"
+services:
+  server:
+    container_name: server
+    restart: always
+    image: twitter-scraper
+    ports:
+      - 4321:4321
