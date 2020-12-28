@@ -28,7 +28,7 @@ docker run -p 4321:4321  ahmethuseyindok/twitter-scraper-server
 GET http://localhost:4321/query?query=coding
 ```
 
-It actually basically search in the page then scroll down, so if you want to get more results you can specify the scroll count on the query. Scroll count defaults to 20 if not provided.
+It basically searches in the page then scrolls down, so if you want to get more results you can specify the scroll count on the query. Scroll count defaults to 20 if not provided.
 
 ```
 GET http://localhost:4321/query?query=coding&scroll=50
