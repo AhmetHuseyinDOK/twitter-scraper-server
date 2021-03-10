@@ -31,19 +31,24 @@ async function query(query, scroll = 20) {
 
     let data = await Promise.all(
       articles.map(async (article) => {
-        const nameSelector = "div.css-1dbjc4n.r-1awozwy.r-18u37iz.r-dnmrzs";
-        const idSelector = "div.css-1dbjc4n.r-18u37iz.r-1wbh5a2.r-1f6r7vd";
+        const nameSelector = "span.css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0";
+        const idSelector = "div.css-1dbjc4n.r-18u37iz.r-1wbh5a2.r-13hce6t > div > span";
         const timeSelector = "time";
         let dataMapping = {
           name: nameSelector,
           id: idSelector,
-          text: "div.css-1dbjc4n.r-1iusvr4.r-16y2uox.r-1777fci.r-1mi0q7o > div:nth-child(2)",
+          text: "div.css-1dbjc4n.r-1iusvr4.r-16y2uox.r-1777fci.r-kzbkwu",
         };
         let data = {};
 
         await Promise.all(
           Object.entries(dataMapping).map(async ([key, value]) => {
-            data[key] = await getProperty(article, value);
+            console.log("searching for: " + key);
+            try {
+              data[key] = await getProperty(article, value);
+            } catch {
+              console.log("key not found: " + key);
+            }
           })
         );
 

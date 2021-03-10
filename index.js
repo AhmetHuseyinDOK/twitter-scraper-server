@@ -10,7 +10,7 @@ app.get("/query", async (req, res) => {
   let data = await query(req.query.query, req.query.scroll);
   res.send(data);
 });
-
+console.log("starting server...");
 console.log("opening browser");
 openBrowser().then(() => {
   console.log("browser is open");
