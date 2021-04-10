@@ -1,4 +1,7 @@
 const puppeeter = require("puppeteer");
+/**
+ * @type {puppeeter.Browser}
+ */
 let browser;
 async function getProperty(element, selector, content = "textContent") {
   const innerElem = await element.$(selector);
@@ -9,6 +12,7 @@ async function getProperty(element, selector, content = "textContent") {
 async function openBrowser() {
   browser = await puppeeter.launch({
     args: ["--disable-dev-shm-usage", "--no-sandbox"],
+    headless: true,
   });
 }
 
@@ -19,8 +23,10 @@ async function closeBrowser() {
 async function query(query, scroll = 20) {
   console.log(`searching for query ${query} with scroll count ${scroll}`);
   const page = await browser.newPage();
-  await page.goto("https://twitter.com/hashtag/" + escape(query) + "?f=live", { waitUntil: "networkidle2" });
-
+  page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36");
+  await page.goto("https://twitter.com/hashtag/" + escape(query) + "?f=live", {
+    waitUntil: "networkidle2",
+  });
   // function waitInSeconds(seconds) {
   //   new Promise((res) => setTimeout(res, seconds * 1000));
   // }
