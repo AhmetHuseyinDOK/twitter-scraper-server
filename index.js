@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/query", async (req, res) => {
-  let data = await query(req.query.query, req.query.scroll);
+  let data = await query(req.query.query, req.query.count);
   res.send(data);
 });
 console.log("starting server...");
